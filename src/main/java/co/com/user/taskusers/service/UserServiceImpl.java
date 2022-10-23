@@ -54,21 +54,14 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
+        repository.deleteProfilesFromUser(id);
         repository.deleteById(id);
+
         return user.orElse(null);
     }
 
     @Override
     public List<User> findAllUsers(){
         return repository.findAll();
-    }
-
-    public Integer binaryToInteger(String binary) {
-        char[] numbers = binary.toCharArray();
-        int result = 0;
-        for(int i=numbers.length - 1; i>=0; i--)
-            if(numbers[i]=='1')
-                result += Math.pow(2, (numbers.length-i - 1));
-        return result;
     }
 }
