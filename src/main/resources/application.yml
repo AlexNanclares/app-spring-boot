@@ -6,4 +6,4 @@ Spring:
   application:
     name: users-app
   profiles:
-    active: dev
+    active: prod

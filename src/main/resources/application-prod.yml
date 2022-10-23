@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: postgres://exfwwvsenktanw:2db0f57d3234e7c5648e07bd11707b979021e20e0ba4e91279f0f11aa9455f96@ec2-3-219-19-205.compute-1.amazonaws.com:5432/d3ot8sujpkrrsu
+    url: postgres://iejujafyozsqpk:35f27bcee0e002e36df48222b105b68f198e1bb537b464fbf129d31ce5541744@ec2-54-160-200-167.compute-1.amazonaws.com:5432/d8sddlcbvh96vh
     driver-class-name: org.postgresql.Driver
-    username: exfwwvsenktanw
-    password: 2db0f57d3234e7c5648e07bd11707b979021e20e0ba4e91279f0f11aa9455f96
+    username: iejujafyozsqpk
+    password: 35f27bcee0e002e36df48222b105b68f198e1bb537b464fbf129d31ce5541744
   sql:
     init:
       platform: postgres

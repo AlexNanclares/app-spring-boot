@@ -2,6 +2,7 @@ package co.com.user.taskusers.service;
 
 import co.com.user.taskusers.mapper.UserInDTOToUser;
 import co.com.user.taskusers.persistence.entity.Dependence;
+import co.com.user.taskusers.persistence.entity.Profile;
 import co.com.user.taskusers.persistence.entity.User;
 import co.com.user.taskusers.persistence.repository.UserRepository;
 import co.com.user.taskusers.service.DTO.UserInDTO;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,13 +23,13 @@ public class UserServiceImpl implements UserService {
     private final UserInDTOToUser userInDTOToUser;
 
     @Override
-    public User createUser(UserInDTO user, Dependence dependence){
-        return repository.save(userInDTOToUser.map(user,dependence));
+    public User createUser(UserInDTO user, Dependence dependence, Collection<Profile> profile){
+        return repository.save(userInDTOToUser.map(user,dependence, profile));
     }
 
     @Override
     @Transactional
-    public User updateUser(UserInUpdateDTO user, Dependence dependence){
+    public User updateUser(UserInUpdateDTO user, Dependence dependence, Collection<Profile> profile){
         Optional<User> resultSearch = repository.findById(user.getId());
 
         if(resultSearch.isEmpty()){
@@ -35,6 +37,12 @@ public class UserServiceImpl implements UserService {
         }
 
         repository.updateUser(user.getDateBirth(), user.getActive(), dependence.toString(), user.getId());
+        repository.deleteProfilesFromUser(user.getId());
+
+        for(Profile p : profile) {
+            repository.insertProfilesFromUser(user.getId(), p.toString());
+        }
+
         return resultSearch.orElse(null);
     }
 
