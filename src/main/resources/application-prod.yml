@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: postgres://exfwwvsenktanw:2db0f57d3234e7c5648e07bd11707b979021e20e0ba4e91279f0f11aa9455f96@ec2-3-219-19-205.compute-1.amazonaws.com:5432/d3ot8sujpkrrsu
+    driver-class-name: org.postgresql.Driver
+    username: exfwwvsenktanw
+    password: 2db0f57d3234e7c5648e07bd11707b979021e20e0ba4e91279f0f11aa9455f96
+  sql:
+    init:
+      platform: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
