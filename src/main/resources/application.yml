@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /users/api/v1
+  port: 9070
+Spring:
+  application:
+    name: users-app
+  profiles:
+    active: dev
