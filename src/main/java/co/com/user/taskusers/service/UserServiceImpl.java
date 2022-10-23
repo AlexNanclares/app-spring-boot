@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         }
 
         repository.updateUser(user.getDateBirth(), user.getActive(), dependence.toString(), user.getId());
-        //repository.deleteProfilesFromUser(user.getId());
+        repository.deleteProfilesFromUser(user.getId());
 
         //for(Profile p : profile) {
         //    repository.insertProfilesFromUser(user.getId(), p.toString());
