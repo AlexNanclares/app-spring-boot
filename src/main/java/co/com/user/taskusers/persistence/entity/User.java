@@ -6,9 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -30,7 +27,7 @@ public class User {
     @ElementCollection(targetClass = Profile.class)
     @Column(name = "profile")
     @Enumerated(EnumType.STRING)
-    private Collection<Profile> profile;
+    public List<Profile> profile;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)

@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService {
     private final UserInDTOToUser userInDTOToUser;
 
     @Override
-    public User createUser(UserInDTO user, Dependence dependence, Collection<Profile> profile){
+    public User createUser(UserInDTO user, Dependence dependence, List<Profile> profile){
         return repository.save(userInDTOToUser.map(user,dependence, profile));
     }
 
     @Override
     @Transactional
-    public User updateUser(UserInUpdateDTO user, Dependence dependence, Collection<Profile> profile){
+    public User updateUser(UserInUpdateDTO user, Dependence dependence, List<Profile> profile){
         Optional<User> resultSearch = repository.findById(user.getId());
 
         if(resultSearch.isEmpty()){
@@ -37,16 +37,17 @@ public class UserServiceImpl implements UserService {
         }
 
         repository.updateUser(user.getDateBirth(), user.getActive(), dependence.toString(), user.getId());
-        //repository.deleteProfilesFromUser(user.getId());
+        repository.deleteProfilesFromUser(user.getId());
 
-        //for(Profile p : profile) {
-        //    repository.insertProfilesFromUser(user.getId(), p.toString());
-        //}
+        for(Profile p : profile) {
+            repository.insertProfilesFromUser(user.getId(), p.toString());
+        }
 
         return resultSearch.orElse(null);
     }
 
     @Override
+    @Transactional
     public User deleteUser(Long id){
         Optional<User> user = repository.findById(id);
 
@@ -59,7 +60,6 @@ public class UserServiceImpl implements UserService {
 
         return user.orElse(null);
     }
-
     @Override
     public List<User> findAllUsers(){
         return repository.findAll();

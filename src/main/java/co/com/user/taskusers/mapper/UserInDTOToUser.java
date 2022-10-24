@@ -7,10 +7,11 @@ import co.com.user.taskusers.service.DTO.UserInDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
 @Component
-public class UserInDTOToUser implements IMapper<UserInDTO, Dependence, Collection<Profile>, User> {
-    public User map(UserInDTO in, Dependence dependence, Collection<Profile> profile){
+public class UserInDTOToUser implements IMapper<UserInDTO, Dependence, List<Profile>, User> {
+    public User map(UserInDTO in, Dependence dependence, List<Profile> profile){
         User user = new User();
 
         user.setActive(false);

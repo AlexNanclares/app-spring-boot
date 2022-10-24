@@ -21,7 +21,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
                     @Param("dependence") String dependence, @Param("id") Long id);
 
     @Modifying
-    @Query(value = "DELETE USER_PROFILE WHERE user_id=:id", nativeQuery = true)
+    @Query(value = "DELETE USERS WHERE ID=:id", nativeQuery = true)
+    void deleteUserById(@Param("id") Long id);
+
+    @Modifying
+    @Query(value = "DELETE USER_PROFILE WHERE USER_ID=:id", nativeQuery = true)
     void deleteProfilesFromUser(@Param("id") Long id);
 
     @Modifying

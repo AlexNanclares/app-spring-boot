@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface UserService {
 
-    User createUser(UserInDTO user, Dependence dependence, Collection<Profile> profile);
+    User createUser(UserInDTO user, Dependence dependence, List<Profile> profile);
 
-    User updateUser(UserInUpdateDTO user, Dependence dependence, Collection<Profile> profile);
+    User updateUser(UserInUpdateDTO user, Dependence dependence, List<Profile> profile);
 
     User deleteUser(Long id);
 

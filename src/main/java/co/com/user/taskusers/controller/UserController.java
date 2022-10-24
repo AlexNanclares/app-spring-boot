@@ -25,7 +25,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/dependence/{dependence}/profile/{profile}")
-    public User createUser(@RequestBody UserInDTO user, @PathVariable Collection<Profile> profile, @PathVariable Dependence dependence){
+    public User createUser(@RequestBody UserInDTO user, @PathVariable List<Profile> profile, @PathVariable Dependence dependence){
 
         LocalDate currentDate = LocalDate.now();
         LocalDate BirthDate = user.getDateBirth();
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/dependence/{dependence}/profile/{profile}")
-    public User updateUser(@RequestBody UserInUpdateDTO user, @PathVariable Collection<Profile> profile, @PathVariable Dependence dependence){
+    public User updateUser(@RequestBody UserInUpdateDTO user, @PathVariable List<Profile> profile, @PathVariable Dependence dependence){
 
         LocalDate currentDate = LocalDate.now();
         LocalDate BirthDate = user.getDateBirth();
@@ -58,7 +58,6 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public User deleteUser(@PathVariable Long id){
-
         User result = userService.deleteUser(id);
 
         if(Objects.isNull(result)){
